@@ -14,7 +14,7 @@ public class ObjectPosition : MonoBehaviour {
 	}
 
 	public void setPositionOnMap () {
-        Vector2 tempPosition = GameManager.Instance.getMainMapMap().getPositionOnMap (this.pos);
+        Vector2 tempPosition = GameManager.Instance.getMainMap().getPositionOnMap (this.pos);
 		transform.position = new Vector3 (tempPosition.x, transform.position.y, tempPosition.y);
 	}
 
@@ -39,7 +39,7 @@ public class ObjectPosition : MonoBehaviour {
 
     private bool isOnMap()
     {
-        GoogleStaticMap mainMap = GameManager.Instance.getMainMapMap();
+        GoogleStaticMap mainMap = GameManager.Instance.getMainMap();
         return mainMap.centerMercator.Equals(mainMap.tileCenterMercator(pos));
     }
 }

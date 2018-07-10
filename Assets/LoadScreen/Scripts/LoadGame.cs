@@ -28,7 +28,7 @@ public class LoadGame : MonoBehaviour
             image.fillAmount = op.progress / 0.9f;
 
             if (op.progress >= 0.9f)
-                if (Input.touchCount > 0)
+                if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space))
                     op.allowSceneActivation = true;
 
             yield return null;
