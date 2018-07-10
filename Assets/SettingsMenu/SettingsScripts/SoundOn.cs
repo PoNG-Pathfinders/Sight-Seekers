@@ -1,8 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class SoundOn : MonoBehaviour {
+    public Sprite voloff;
+    public Sprite volon;
+    public Button but;
+    public void ChangeImage()
+    {
+        if (but.image.sprite == voloff)
+            but.image.sprite = volon;
+        else
+        {
+            but.image.sprite = voloff;
+        }
+    }
     public AudioSource AudioSource;
 
     // Use this for initialization
