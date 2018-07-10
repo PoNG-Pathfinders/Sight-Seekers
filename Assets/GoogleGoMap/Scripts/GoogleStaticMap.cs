@@ -13,7 +13,7 @@ public class GoogleStaticMap : MonoBehaviour {
 	// To prevent unintentionally sending to many map request to the server
 	// and paying the fee (for instance in a update loop). Set it to zero to
 	// remove the restriction.
-	private const int MAX_MAP_REQUEST_NUM = 0;
+	private const  int MAX_MAP_REQUEST_NUM = 50;
 	[HideInInspector]
 	public bool isDrawn = false;
 
@@ -54,9 +54,8 @@ public class GoogleStaticMap : MonoBehaviour {
 	// Choose zoom level between 0 to 20.
 	public int zoom = 15;
 
-    // Sets the overlap percentage between two adjacent tiles of map.
-    [HideInInspector]
-    public readonly float overlap = 0.15f;
+	// Sets the overlap percentage between two adjacent tiles of map.
+	private float overlap = 0.25f;
 	public MapType mapType;
 
 	// Max size for free access is 640.
@@ -106,7 +105,7 @@ public class GoogleStaticMap : MonoBehaviour {
 		heightMercatorY = (verticalSize * (this.doubleResolution ? 2.0f : 1.0f)) * curPixelToMercator;
 
 		// You can initialize realWorldtoUnityWorldScale to another value of your choice.
-		realWorldtoUnityWorldScale = new Vector2 (0.1f, 0.1f); 
+		realWorldtoUnityWorldScale = new Vector2 (0.2f, 0.2f); 
 	}
 
 
@@ -118,7 +117,7 @@ public class GoogleStaticMap : MonoBehaviour {
 
 	IEnumerator DrawMapCoroutine ()
 	{
-		if (MAX_MAP_REQUEST_NUM == 0 || countOfMapRequests < MAX_MAP_REQUEST_NUM) {
+		if (MAX_MAP_REQUEST_NUM != 0 && countOfMapRequests < MAX_MAP_REQUEST_NUM) {
 			string baseURL = "https://maps.googleapis.com/maps/api/staticmap?";
 			string location = "center=" + _centerLatLon.lat_d.ToString () + "," + _centerLatLon.lon_d.ToString ();
 			string parameters = "&zoom=" + zoom.ToString ();

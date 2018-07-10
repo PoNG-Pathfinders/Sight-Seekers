@@ -7,22 +7,29 @@ public class ColorCollision2 : MonoBehaviour
 {
 	public float recolorPeriod = 0;
 	public int recolorTime = 3;
+    public AudioSource AudioSource;
 	bool hit = false;
 	// Use this for initialization
 
 	void OnCollisionEnter(Collision other)
 	{
-		Debug.Log ("Collision Detected");
+        if (!hit)
+        {
+            GameObject[] Sounds = GameObject.FindGameObjectsWithTag("Sounds");
+            GameObject Sound = Sounds[Random.Range(0, Sounds.Length)];
+            AudioSource audio = Sound.GetComponent<AudioSource>();
+            audio.Play();
+        }
+        Debug.Log ("Collision Detected");
 		gameObject.GetComponent<Renderer>().material.color = Color.cyan;
 		recolorPeriod = recolorTime;
 		hit = true;
 	}
-
 	void Update()
 	{
 		if(hit)
 		{
-			if(recolorPeriod > 0)
+            if (recolorPeriod > 0)
 			{
 				recolorPeriod-=Time.deltaTime;
 			}

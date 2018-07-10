@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/StartMenu/StartMenu.unity
-    guid: 60a39e03d5c571f4983e7d9314e64b9d
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Pathfinders Test Geo Scene.unity
     guid: c6810ce2e68416f4992ca8d4abcfcfce

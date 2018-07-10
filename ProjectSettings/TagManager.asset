@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Map
   - ObjectOnMap
+  - Sounds
+  - Music
+  - Voice
   layers:
   - Default
   - TransparentFX
