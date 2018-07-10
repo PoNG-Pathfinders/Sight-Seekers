@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Distance : MonoBehaviour {
 
+    public PlayerLocationService service;
     public GeoPoint loc = new GeoPoint();
     [HideInInspector]
     public float trueHeading;
@@ -32,8 +33,10 @@ public class Distance : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float lat = loc.lat_r;
-        float lon = loc.lon_r;
+        float lat = service.loc.lat_r;
+        float lon = service.loc.lon_r;
+        //float lat = loc.lat_r;
+        //float lon = loc.lon_r;
 
         float diffLat = lat - prevLat;
         float diffLon = lon - prevLon;
