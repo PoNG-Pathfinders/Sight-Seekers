@@ -20,7 +20,6 @@ public class Distance : MonoBehaviour {
     [HideInInspector]
     public const float EARTH_RADIUS = 3959;
 
-    public List<float> weeklyDistances = new List<float>(7);
     public float distTraveled=0;
 
     public float prevLat;
