@@ -659,11 +659,11 @@ RectTransform:
   m_Father: {fileID: 1607805931}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -280}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 10, y: 10}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &180453753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4340,12 +4340,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01caa039e88bbb148b47fe9faae1f8b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  service: {fileID: 0}
+  service: {fileID: 1750993606}
   trueHeading: 0
   locServiceIsRunning: 0
   maxWait: 30
   hasMobile: 1
-  distText: {fileID: 0}
+  distText: {fileID: 180453753}
   distTraveled: 0
   prevLat: 0
   prevLon: 0

@@ -20,6 +20,7 @@ public class Distance : MonoBehaviour {
     [HideInInspector]
     public const float EARTH_RADIUS = 3959;
 
+    public List<float> weeklyDistances = new List<float>(7);
     public float distTraveled=0;
 
     public float prevLat;
@@ -33,16 +34,22 @@ public class Distance : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float lat = service.loc.lat_r;
-        float lon = service.loc.lon_r;
-        //float lat = loc.lat_r;
-        //float lon = loc.lon_r;
+        float lat, lon;
+        if (GameManager.Instance.playerStatus == GameManager.PlayerStatus.FreeFromDevice)
+        {
+            GeoPoint playerPos = GameManager.Instance.getMainMap().getPositionOnMap(new Vector2(service.transform.position.x, service.transform.position.z));
+            lat = playerPos.lat_r;
+            lon = playerPos.lon_r;
+        }
+        else
+        {
+            lat = service.loc.lat_r;
+            lon = service.loc.lon_r;
+        }
 
         float diffLat = lat - prevLat;
         float diffLon = lon - prevLon;
-
-        Debug.Log(loc.lat_r);
-
+        
         float a = Mathf.Sin(diffLat / 2) * Mathf.Sin(diffLat / 2)
             + Mathf.Cos(lat) * Mathf.Cos(prevLat)
             * Mathf.Sin(diffLon / 2) * Mathf.Sin(diffLon / 2);
@@ -50,11 +57,12 @@ public class Distance : MonoBehaviour {
 
         float dist = EARTH_RADIUS * c;
         //if (dist != 0)
-            Debug.Log("Distance Traveled: " + distTraveled);
-        distText.text = "Distance Traveled: " + distTraveled;
+        if (dist <= service.transform.GetComponent<SimpleController>().speed)
+            distTraveled += dist;
 
-        Debug.Log("Geoposition = " + GetComponent<GameManager>().newMap.transform.position);
-        distTraveled += dist;
+        int miles = (int)distTraveled;  
+        int feet = (int)(distTraveled * 5280) % 5280;
+        distText.text = "Distance Traveled: " + miles + " Miles, " + feet + " Feet";
 
         prevLat = lat;
         prevLon = lon;
