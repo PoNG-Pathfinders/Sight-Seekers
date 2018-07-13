@@ -23,17 +23,17 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 8
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 85f8988458a7dbc4abfbb546f448ea18, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 1024
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -720,7 +720,6 @@ MonoBehaviour:
   maxWait: 30
   hasMobile: 1
   distText: {fileID: 180453753}
-  weeklyDistances: []
   distTraveled: 0
   prevLat: 0
   prevLon: 0
@@ -1893,31 +1892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf2bbf4596122d4ead074e5afa9fea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animClip: {fileID: 7400000, guid: 9972074f887845f46be84b52f84b1a32, type: 2}
-  spriteRenderer: {fileID: 480302770}
-  sprites:
-  - {fileID: 21300000, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300002, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300004, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300006, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300008, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300010, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300012, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300014, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300016, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300018, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300020, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300022, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300024, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300026, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300028, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300030, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300032, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300034, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300036, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300038, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  - {fileID: 21300040, guid: ae61800aa990d3646ac75cf808df21d5, type: 3}
-  update: 0
 --- !u!114 &480302770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2411,7 +2385,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4740,7 +4714,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -4887,7 +4861,6 @@ MonoBehaviour:
   maxWait: 30
   hasMobile: 1
   distText: {fileID: 180453753}
-  weeklyDistances: []
   distTraveled: 0
   prevLat: 0
   prevLon: 0

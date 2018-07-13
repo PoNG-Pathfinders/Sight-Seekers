@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class SpriteAnimation : MonoBehaviour
-{
+{/*
     public AnimationClip animClip;
     public Image spriteRenderer;
     public Sprite[] sprites;
@@ -14,7 +14,7 @@ public class SpriteAnimation : MonoBehaviour
     AnimationEvent[] animationEvents;
 
     public virtual void Update ()
-    {
+    {/*
         if (!update)
             return;
         update = false;
@@ -33,4 +33,4 @@ public class SpriteAnimation : MonoBehaviour
     {
         spriteRenderer.sprite = sprite;
     }
-}
+*/}
