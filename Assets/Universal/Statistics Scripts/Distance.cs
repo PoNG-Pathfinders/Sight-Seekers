@@ -57,7 +57,10 @@ public class Distance : MonoBehaviour {
         float dist = EARTH_RADIUS * c;
         //if (dist != 0)
         if (dist <= service.transform.GetComponent<SimpleController>().speed)
+        {
             distTraveled += dist;
+            Statistics.Instance.addDistance(dist);
+        }
 
         int miles = (int)distTraveled;  
         int feet = (int)(distTraveled * 5280) % 5280;

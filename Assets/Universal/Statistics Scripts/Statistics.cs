@@ -5,18 +5,39 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class Statistics : Singleton<Statistics> {
 
-    public int lastDaySaved;
     public float[] weeklyDistances = new float[7];
+    public DateTime[] invalidSaveDates = new DateTime[7];
+
+    public void addDistance(float dist)
+    {
+        DateTime date = DateTime.Now;
+        int dayOfWeek = (int)date.DayOfWeek;
+        if (DateTime.Compare(date, invalidSaveDates[(int) date.DayOfWeek]) > 0)
+        {
+            weeklyDistances[dayOfWeek] = dist;
+            invalidSaveDates[dayOfWeek] = date.AddDays(7);
+        }
+        else
+        {
+            weeklyDistances[dayOfWeek] += dist;
+        }
+    }
 
     void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
+        for (int i = 0; i < 7; i++)
+            invalidSaveDates[i] = DateTime.Now.AddDays(i);
         load();
     }
 
     void OnDisable()
     {
         save();
+        foreach (DateTime date in invalidSaveDates)
+        {
+            Debug.Log(date);
+        }
     }
 
     public void save()
@@ -25,9 +46,11 @@ public class Statistics : Singleton<Statistics> {
         FileStream file = File.Create(Application.persistentDataPath + "/statistics.dat");
 
         StatisticsData data = new StatisticsData();
-        data.dayOfWeek = (int) DateTime.Now.DayOfWeek;
         data.weeklyDistances = weeklyDistances;
 
+        data.invalidSaveDates = new long[invalidSaveDates.Length];
+        for (int i = 0; i < invalidSaveDates.Length; i++)
+            data.invalidSaveDates[i] = invalidSaveDates[i].ToBinary();
 
         bf.Serialize(file, data);
         file.Close();
@@ -43,6 +66,8 @@ public class Statistics : Singleton<Statistics> {
             file.Close();
 
             weeklyDistances = data.weeklyDistances;
+            for (int i = 0; i < invalidSaveDates.Length; i++)
+                invalidSaveDates[i] = new DateTime(data.invalidSaveDates[i]);
         }
     }
 }
@@ -50,6 +75,6 @@ public class Statistics : Singleton<Statistics> {
 [Serializable]
 class StatisticsData
 {
-    public int dayOfWeek;
     public float[] weeklyDistances;
+    public long[] invalidSaveDates;
 }
