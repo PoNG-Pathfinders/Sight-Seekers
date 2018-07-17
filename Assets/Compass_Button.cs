@@ -41,6 +41,29 @@ public class Compass_Button : MonoBehaviour {
             Direction = 0;
         else
             Direction = 1;
+
+        switch (gameObject.name)
+        {
+       
+
+            case "E-button":
+                Image eImage = gameObject.GetComponent<Image>();
+                eImage.color = Color.green;
+                break;
+            case "N-button":
+                Image nImage = gameObject.GetComponent<Image>();
+                nImage.color = Color.blue;
+                break;
+            case "W-button":
+                Image wImage = gameObject.GetComponent<Image>();
+                wImage.color = Color.yellow;
+                 break;
+            case "S-button":
+                Image sImage = gameObject.GetComponent<Image>();
+                sImage.color = Color.red;
+                break;
+        }
+
     }
 
     public void OnPointerClick(PointerEventData pointerEventData)
@@ -72,6 +95,7 @@ public class Compass_Button : MonoBehaviour {
                         Right_Answer.Play();
                     else
                         Wrong_Answer.Play();
+              
                     break;
                 default:
                     break;
