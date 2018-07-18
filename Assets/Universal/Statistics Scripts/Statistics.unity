@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b9aca9cd450cb4ea6930d2c1520dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastDaySaved: 0
   weeklyDistances:
   - 0
   - 0

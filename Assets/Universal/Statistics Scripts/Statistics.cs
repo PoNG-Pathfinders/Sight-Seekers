@@ -6,16 +6,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class Statistics : Singleton<Statistics> {
 
     public float[] weeklyDistances = new float[7];
-    public DateTime[] invalidSaveDates = new DateTime[7];
+    private DateTime[] invalidDates = new DateTime[7];
 
     public void addDistance(float dist)
     {
-        DateTime date = DateTime.Now;
+        DateTime date = DateTime.Today;
+
         int dayOfWeek = (int)date.DayOfWeek;
-        if (DateTime.Compare(date, invalidSaveDates[(int) date.DayOfWeek]) > 0)
+        if (DateTime.Compare(date, invalidDates[(int) date.DayOfWeek]) > 0)
         {
             weeklyDistances[dayOfWeek] = dist;
-            invalidSaveDates[dayOfWeek] = date.AddDays(7);
+            invalidDates[dayOfWeek] = date.AddDays(7);
         }
         else
         {
@@ -27,14 +28,14 @@ public class Statistics : Singleton<Statistics> {
     {
         DontDestroyOnLoad(gameObject);
         for (int i = 0; i < 7; i++)
-            invalidSaveDates[i] = DateTime.Now.AddDays(i);
+            invalidDates[i] = DateTime.Now.AddDays(i);
         load();
     }
 
     void OnDisable()
     {
         save();
-        foreach (DateTime date in invalidSaveDates)
+        foreach (DateTime date in invalidDates)
         {
             Debug.Log(date);
         }
@@ -48,9 +49,9 @@ public class Statistics : Singleton<Statistics> {
         StatisticsData data = new StatisticsData();
         data.weeklyDistances = weeklyDistances;
 
-        data.invalidSaveDates = new long[invalidSaveDates.Length];
-        for (int i = 0; i < invalidSaveDates.Length; i++)
-            data.invalidSaveDates[i] = invalidSaveDates[i].ToBinary();
+        data.invalidDates = new long[invalidDates.Length];
+        for (int i = 0; i < invalidDates.Length; i++)
+            data.invalidDates[i] = invalidDates[i].ToBinary();
 
         bf.Serialize(file, data);
         file.Close();
@@ -66,8 +67,22 @@ public class Statistics : Singleton<Statistics> {
             file.Close();
 
             weeklyDistances = data.weeklyDistances;
-            for (int i = 0; i < invalidSaveDates.Length; i++)
-                invalidSaveDates[i] = new DateTime(data.invalidSaveDates[i]);
+            for (int i = 0; i < invalidDates.Length; i++)
+                invalidDates[i] = new DateTime(data.invalidDates[i]);
+        }
+        else
+        {
+            weeklyDistances = new float[7];
+            invalidDates = new DateTime[7];
+
+            int dayOfWeek = (int) DateTime.Today.DayOfWeek;
+            for (int i = 0; i < 7; i++)
+            {
+                int offset = i - dayOfWeek;
+                if (offset > 0)
+                    offset -= 7;
+                invalidDates[i] = DateTime.Today.AddDays(offset); 
+            }
         }
     }
 }
@@ -76,5 +91,5 @@ public class Statistics : Singleton<Statistics> {
 class StatisticsData
 {
     public float[] weeklyDistances;
-    public long[] invalidSaveDates;
+    public long[] invalidDates;
 }

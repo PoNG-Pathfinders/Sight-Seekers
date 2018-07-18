@@ -8,30 +8,8 @@ public class LoadGame : MonoBehaviour
 {
     public Image image;
 
-    public float progress;
-
-	public void Start ()
+	public void Update()
     {
-        image.fillAmount = 0;
-        StartCoroutine(loadScene());
-    }
-
-    private IEnumerator loadScene()
-    {
-        AsyncOperation op = SceneManager.LoadSceneAsync(1);
-        op.allowSceneActivation = false;
-
-        while (!op.isDone)
-        {
-            progress = op.progress;
-
-            image.fillAmount = op.progress / 0.9f;
-
-            if (op.progress >= 0.9f)
-                if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.Space))
-                    op.allowSceneActivation = true;
-
-            yield return null;
-        }
+        image.fillAmount = SceneChangeManager.obj.GetComponent<SceneChangeManager>().progress;
     }
 }
