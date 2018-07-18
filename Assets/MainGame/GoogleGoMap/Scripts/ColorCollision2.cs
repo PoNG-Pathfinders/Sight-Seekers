@@ -15,6 +15,9 @@ public class ColorCollision2 : MonoBehaviour
 	{
         if (!hit)
         {
+            PointTest pt = GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>();
+            pt.testObject = null;
+            pt.findText.text = "";
             GameObject[] Sounds = GameObject.FindGameObjectsWithTag("Sounds");
             GameObject Sound = Sounds[Random.Range(0, Sounds.Length)];
             AudioSource audio = Sound.GetComponent<AudioSource>();
