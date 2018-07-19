@@ -25,7 +25,11 @@ public class ColorCollision2 : MonoBehaviour
         }
         Debug.Log ("Collision Detected");
 		gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-		recolorPeriod = recolorTime;
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            r.material.color = Color.cyan;
+        }
+            recolorPeriod = recolorTime;
 		hit = true;
 	}
 	void Update()
@@ -39,7 +43,11 @@ public class ColorCollision2 : MonoBehaviour
 			if (recolorPeriod < 0)
 			{
 				gameObject.GetComponent<Renderer>().material.color = Color.white;
-				hit = false;
+                foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                {
+                    r.material.color = Color.white;
+                }
+                    hit = false;
 			}
 		}
 	}

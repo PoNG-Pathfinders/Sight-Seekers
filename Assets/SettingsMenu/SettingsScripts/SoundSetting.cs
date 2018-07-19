@@ -32,6 +32,5 @@ public class SoundSetting : MonoBehaviour, IPointerClickHandler
 
             if (muted == false) {volume = AudioListener.volume; AudioListener.volume = 0; muted = true; Debug.Log("Sound is Off"); but.image.sprite = voloff; }
             else { AudioListener.volume = volume; muted = false; Debug.Log("Sound is " +volume); SoundOnOff.Play(); but.image.sprite = volon; }
-
     }
 }

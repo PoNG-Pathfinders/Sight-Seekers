@@ -8,6 +8,10 @@ public class Compass_Button : MonoBehaviour {
     public PlayerLocationService Service;
     public AudioSource Right_Answer;
     public AudioSource Wrong_Answer;
+    public Sprite E_CompassColor;
+    public Sprite N_CompassColor;
+    public Sprite W_CompassColor;
+    public Sprite S_CompassColor;
 
     public byte Direction;
 
@@ -32,6 +36,8 @@ public class Compass_Button : MonoBehaviour {
         ObjectPosition obj = landmark.GetComponent<ObjectPosition>();
         GeoPoint objectPos = new GeoPoint(obj.lat_d, obj.lon_d);
 
+        Debug.Log("GeoPoint object Detected");
+
         float angle = Mathf.Atan2(objectPos.lat_d - playerPos.lat_d, objectPos.lon_d - playerPos.lon_d);
         if (angle < (-Mathf.PI / 2))
             Direction = 2;
@@ -46,21 +52,25 @@ public class Compass_Button : MonoBehaviour {
         {
        
 
-            case "E-button":
-                Image eImage = gameObject.GetComponent<Image>();
-                eImage.color = Color.green;
+            case "E-Button":
+                Sprite eSprite = this.gameObject.GetComponent<Image>().sprite;
+                eSprite = E_CompassColor;
+                Debug.Log("E-sprite changed");
                 break;
-            case "N-button":
-                Image nImage = gameObject.GetComponent<Image>();
-                nImage.color = Color.blue;
+            case "N-Button":
+                Sprite nSprite = this.gameObject.GetComponent<Image>().sprite;
+                nSprite = N_CompassColor;
+                Debug.Log("N-sprite changed");
                 break;
-            case "W-button":
-                Image wImage = gameObject.GetComponent<Image>();
-                wImage.color = Color.yellow;
-                 break;
-            case "S-button":
-                Image sImage = gameObject.GetComponent<Image>();
-                sImage.color = Color.red;
+            case "W-Button":
+                Sprite wSprite = this.gameObject.GetComponent<Image>().sprite;
+                wSprite = W_CompassColor;
+                Debug.Log("W-sprite changed");
+                break;
+            case "S-Button":
+                Sprite sSprite = this.gameObject.GetComponent<Image>().sprite;
+                sSprite = S_CompassColor;
+                Debug.Log("S-sprite changed");
                 break;
         }
 
