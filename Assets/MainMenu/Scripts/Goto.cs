@@ -40,11 +40,11 @@ public class Goto : MonoBehaviour, IPointerClickHandler
         {
             case ButtonType.EnterMainGame:
                 Debug.Log("Now entering the Main Game!");
-                SceneManager.LoadSceneAsync(1);
+                    StartCoroutine(SceneChangeManager.Instance.changeScene(SceneChangeManager.Scenes.MainGame));
                 break;
             case ButtonType.EnterSettings:
                 Debug.Log("Now entering the Settings.");
-                SceneManager.LoadSceneAsync(3);
+                    StartCoroutine(SceneChangeManager.Instance.changeScene(SceneChangeManager.Scenes.Settings));
                 break;
         }
     }

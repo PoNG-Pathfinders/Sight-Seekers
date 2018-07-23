@@ -24,7 +24,7 @@ public class Challenges : MonoBehaviour, IPointerClickHandler
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
             Debug.Log("This has not been implemented yet.");
-//            SceneManager.LoadSceneAsync(0);
+//            StartCoroutine(SceneChangeManager.Instance.changeScene(SceneChangeManager.Scenes.MainMenu));
         }
     }
 }

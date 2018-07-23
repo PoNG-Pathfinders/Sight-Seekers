@@ -22,7 +22,7 @@ public class Back : MonoBehaviour, IPointerClickHandler
     {
         if (pointerEventData.button == PointerEventData.InputButton.Left)
         {
-            SceneManager.LoadSceneAsync(0);
+            StartCoroutine(SceneChangeManager.Instance.changeScene(SceneChangeManager.Scenes.MainMenu));
         }
     }
 }

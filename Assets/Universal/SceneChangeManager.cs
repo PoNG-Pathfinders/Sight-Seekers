@@ -54,12 +54,38 @@ public class SceneChangeManager : Singleton<SceneChangeManager> {
         }
         finishedInit = true;
         SceneManager.UnloadSceneAsync((int)Scenes.LoadScreen);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
     }
 
-    IEnumerator changeScene(Scenes scene)
+    public IEnumerator changeScene(Scenes scene)
     {
+        String gamePath = SceneManager.GetSceneByBuildIndex((int)Scenes.MainGame).path;
+        String scenePath = SceneUtility.GetScenePathByBuildIndex((int)scene);
+        AsyncOperation op;
 
+        if (!gamePath.Equals(scenePath))
+        {
+            op = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive);
+            while (!op.isDone)
+                yield return null;
+        }
 
-        yield return null;
+        Queue<Scene> toUnload = new Queue<Scene>();
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene sc = SceneManager.GetSceneAt(i);
+            if (sc.path.Equals(scenePath))
+                SceneManager.SetActiveScene(sc);
+            else if (!sc.path.Equals(gamePath))
+                toUnload.Enqueue(sc);
+        }
+
+        while (toUnload.Count > 0)
+        {
+            Scene sc = toUnload.Dequeue();
+            op = SceneManager.UnloadSceneAsync(sc);
+            while (!op.isDone)
+                yield return null;
+        }
     }
 }
