@@ -9,29 +9,54 @@ public class ColorCollision2 : MonoBehaviour
 	public int recolorTime = 3;
     public AudioSource AudioSource;
 	bool hit = false;
-	// Use this for initialization
-
-	void OnCollisionEnter(Collision other)
-	{
+    // Use this for initialization
+    private PointTest test;
+    void OnCollisionEnter(Collision other)
+    {
         if (!hit)
         {
-            PointTest pt = GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>();
-            pt.testObject = null;
-            pt.findText.text = "";
-            GameObject[] Sounds = GameObject.FindGameObjectsWithTag("Sounds");
-            GameObject Sound = Sounds[Random.Range(0, Sounds.Length)];
-            AudioSource audio = Sound.GetComponent<AudioSource>();
-            audio.Play();
+            Debug.Log("Collision Detected");
+            if (GameObject.FindGameObjectWithTag("CompassButton").GetComponent<Compass_Button>().landmark != null)
+            {
+                if (this.transform.parent.gameObject.name == GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>().testObject.name)
+                {
+                    GameObject.FindGameObjectWithTag("CompassButton").GetComponent<Compass_Button>().Right_Answer.Play();
+                    Debug.Log("You have reached the right destination!");
+                    test = GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>();
+                    test.testObject = null;
+                    test.resetTime();
+                    return;
+                }
+                else
+                {
+                    GameObject.FindGameObjectWithTag("CompassButton").GetComponent<Compass_Button>().Wrong_Answer.Play();
+                    Debug.Log("You have reached the wrong destination!");
+                    test = GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>();
+                    test.testObject = null;
+                    test.resetTime();
+                    return;
+                }
+            }
+            else
+            {
+                PointTest pt = GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>();
+                pt.testObject = null;
+                pt.findText.text = "";
+                GameObject[] Sounds = GameObject.FindGameObjectsWithTag("Sounds");
+                GameObject Sound = Sounds[Random.Range(0, Sounds.Length)];
+                AudioSource audio = Sound.GetComponent<AudioSource>();
+                audio.Play();
+                gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+                foreach (Renderer r in GetComponentsInChildren<Renderer>())
+                {
+                    r.material.color = Color.cyan;
+                }
+                recolorPeriod = recolorTime;
+                hit = true;
+                return;
+            }
         }
-        Debug.Log ("Collision Detected");
-		gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        foreach (Renderer r in GetComponentsInChildren<Renderer>())
-        {
-            r.material.color = Color.cyan;
-        }
-            recolorPeriod = recolorTime;
-		hit = true;
-	}
+    }
 	void Update()
 	{
 		if(hit)

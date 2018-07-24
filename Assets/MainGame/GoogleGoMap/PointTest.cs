@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PointTest : MonoBehaviour {
+public class PointTest : MonoBehaviour
+{
     public AudioSource findDing;
     public AudioSource lostDing;
     public Text findText;
@@ -12,8 +13,9 @@ public class PointTest : MonoBehaviour {
     [HideInInspector]
     public GameObject testObject;
     // Use this for initialization
-    void Start () {
-    Secs = DateTime.Now;
+    void Start()
+    {
+        Secs = DateTime.Now;
     }
 
     // Update is called once per frame
@@ -42,18 +44,22 @@ public class PointTest : MonoBehaviour {
         }
         else
         {
-            int secsDiff = DateTime.Now.Subtract(Secs).Seconds;
-            if (secsDiff >= 30)
+            resetTime();
+        }
+    }
+    public void resetTime()
+    {
+        int secsDiff = DateTime.Now.Subtract(Secs).Seconds;
+        if (secsDiff >= 30)
+        {
+            lostDing.Play();
+            foreach (Renderer r in testObject.GetComponentsInChildren<Renderer>())
             {
-                lostDing.Play();
-                foreach (Renderer r in testObject.GetComponentsInChildren<Renderer>())
-                {
-                    r.material.color = Color.white;
-                }
-                testObject = null;
-                findText.text = "";
-                Secs = DateTime.Now;
+                r.material.color = Color.white;
             }
+            testObject = null;
+            findText.text = "";
+            Secs = DateTime.Now;
         }
     }
 }

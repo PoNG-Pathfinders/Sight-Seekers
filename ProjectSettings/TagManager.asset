@@ -9,6 +9,7 @@ TagManager:
   - Sounds
   - Music
   - Voice
+  - CompassButton
   layers:
   - Default
   - TransparentFX
