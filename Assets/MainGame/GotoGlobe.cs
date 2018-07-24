@@ -40,7 +40,7 @@ public class GotoGlobe : MonoBehaviour, IPointerClickHandler
             {
                 case ButtonType.EnterSettings:
                     Debug.Log("Now entering the Settings.");
-                    SceneManager.LoadSceneAsync(3);
+                    StartCoroutine(SceneChangeManager.Instance.changeScene(SceneChangeManager.Scenes.Settings));
                     break;
             }
     }
