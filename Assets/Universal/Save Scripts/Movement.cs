@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Distance : MonoBehaviour {
+public class Movement : MonoBehaviour {
 
     public PlayerLocationService service;
     public GeoPoint loc = new GeoPoint();
@@ -48,7 +48,9 @@ public class Distance : MonoBehaviour {
 
         float diffLat = lat - prevLat;
         float diffLon = lon - prevLon;
-        
+
+        trueHeading = Mathf.Atan2(diffLat, diffLon) * Mathf.Rad2Deg;
+
         float a = Mathf.Sin(diffLat / 2) * Mathf.Sin(diffLat / 2)
             + Mathf.Cos(lat) * Mathf.Cos(prevLat)
             * Mathf.Sin(diffLon / 2) * Mathf.Sin(diffLon / 2);
