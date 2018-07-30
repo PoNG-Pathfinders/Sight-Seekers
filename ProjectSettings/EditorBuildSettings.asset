@@ -16,7 +16,7 @@ EditorBuildSettings:
     guid: 08fa00b60d1f29f4b972af41d8802700
   - enabled: 1
     path: Assets/MainGame/Pathfinders Test Geo Scene.unity
-    guid: c6810ce2e68416f4992ca8d4abcfcfce
+    guid: 9dafdcbb9a4d5184983da708ce09d8e5
   - enabled: 1
     path: Assets/MainMenu/Main Menu.unity
     guid: 99c9720ab356a0642a771bea13969a05

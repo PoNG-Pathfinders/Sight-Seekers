@@ -7,7 +7,7 @@ public class ColorCollision2 : MonoBehaviour
 {
 	public float recolorPeriod = 0;
 	public int recolorTime = 3;
-    public AudioSource AudioSource;
+    public AudioSource jingle;
 	bool hit = false;
     // Use this for initialization
     private PointTest test;
@@ -42,10 +42,7 @@ public class ColorCollision2 : MonoBehaviour
                 PointTest pt = GameObject.FindGameObjectWithTag("Player").GetComponent<PointTest>();
                 pt.testObject = null;
                 pt.findText.text = "";
-                GameObject[] Sounds = GameObject.FindGameObjectsWithTag("Sounds");
-                GameObject Sound = Sounds[Random.Range(0, Sounds.Length)];
-                AudioSource audio = Sound.GetComponent<AudioSource>();
-                audio.Play();
+                jingle.Play();
                 gameObject.GetComponent<Renderer>().material.color = Color.cyan;
                 foreach (Renderer r in GetComponentsInChildren<Renderer>())
                 {
