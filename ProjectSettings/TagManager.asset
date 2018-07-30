@@ -9,6 +9,7 @@ TagManager:
   - Sounds
   - Music
   - Voice
+  - BackButton
   - CompassButton
   layers:
   - Default
