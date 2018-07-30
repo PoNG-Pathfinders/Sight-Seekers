@@ -38,12 +38,15 @@ public class SceneChangeManager : Singleton<SceneChangeManager> {
         yield return new WaitForSeconds(1);
         foreach (Scenes scene in SceneList)
         {
+            if (scene == Scenes.LoadScreen)
+                continue;
             AsyncOperation op = SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Additive);
             while (!op.isDone)
             {
                 progress = (op.progress + ((int)scene - 0.9f)) / (numScenes - 1);
                 yield return null;
             }
+            Debug.Log("Scene Loaded: " + (int)scene);
             yield return new WaitForSeconds(1);
             if (scene < Scenes.MainGame)
             {
@@ -51,6 +54,7 @@ public class SceneChangeManager : Singleton<SceneChangeManager> {
                 while (!op.isDone)
                     yield return null;
             }
+            Debug.Log("Scene Unloaded: " + (int)scene);
         }
         finishedInit = true;
         SceneManager.UnloadSceneAsync((int)Scenes.LoadScreen);
