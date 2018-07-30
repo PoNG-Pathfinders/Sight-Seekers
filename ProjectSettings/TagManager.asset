@@ -9,6 +9,7 @@ TagManager:
   - Sounds
   - Music
   - Voice
+  - BackButton
   layers:
   - Default
   - TransparentFX
